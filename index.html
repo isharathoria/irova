@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irova – Launching Soon</title>
+<meta name="description" content="A gentle, PPD-free grey-hair colour treatment made for Indian hair and climate. Launching soon in India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#1E2547;--indigo:#3B4C8C;--mist:#EEF0F4;--ash:#9AA0AC;--kesar:#C99A2E;--ink:#20232E;--soft:#5B6072;--white:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Work Sans",system-ui,sans-serif;color:var(--ink);background:var(--mist);line-height:1.6;font-size:17px}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.15}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--kesar);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:rgba(238,240,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid #dde1ea}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:"Young Serif",serif;font-size:22px;color:var(--night);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{width:26px;height:26px}
+.navlinks{display:flex;gap:26px;font-size:15px}
+.navlinks a{text-decoration:none;color:var(--soft)}
+.navlinks a:hover{color:var(--night)}
+.pill{background:var(--night);color:var(--white);font-size:13px;padding:7px 14px;border-radius:999px;font-weight:500}
+@media(max-width:720px){.navlinks{display:none}}
+.hero{background:var(--night);color:var(--white);overflow:hidden;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;min-height:620px;padding-top:40px;padding-bottom:40px}
+.hero h1{font-size:clamp(40px,6.4vw,76px);margin-bottom:22px}
+.hero p{font-size:19px;color:#C9CEE0;max-width:30em}
+.soon{display:inline-flex;align-items:center;gap:10px;margin-top:30px;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:10px 18px;font-size:15px}
+.soon i{width:9px;height:9px;border-radius:50%;background:var(--kesar);display:inline-block;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.strands{width:100%;height:auto;max-height:540px}
+.strands path{fill:none;stroke-width:3.2;stroke-linecap:round}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:56px}.strands{max-height:340px}}
+section{padding:96px 0}
+.sec-head{max-width:640px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(30px,4vw,44px);color:var(--night);margin-bottom:14px}
+.sec-head p{color:var(--soft);font-size:18px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.prod{text-align:center}
+.prod-stage{background:var(--white);border-radius:24px;padding:36px 20px 22px;display:flex;justify-content:center}
+.prod svg{width:150px;height:auto;filter:drop-shadow(0 18px 22px rgba(30,37,71,.18))}
+.prod h3{font-size:22px;margin-top:18px;color:var(--night)}
+.prod p{color:var(--soft);font-size:15px}
+@media(max-width:760px){.products{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+.how{background:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:s}
+.step{counter-increment:s}
+.step svg{width:72px;height:72px;margin-bottom:18px}
+.step h3{font-size:22px;color:var(--night);margin-bottom:8px}
+.step h3::before{content:counter(s) ". ";color:var(--kesar)}
+.step p{color:var(--soft)}
+.note{margin-top:40px;padding:18px 22px;border-left:4px solid var(--kesar);background:var(--mist);color:var(--ink);max-width:720px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.free{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.badges{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.badge{background:var(--white);border-radius:16px;padding:22px;display:flex;gap:14px;align-items:center}
+.badge svg{flex:0 0 40px;width:40px;height:40px}
+.badge b{display:block;font-weight:600;color:var(--night)}
+.badge span{font-size:14px;color:var(--soft)}
+@media(max-width:860px){.free{grid-template-columns:1fr}}
+.compare{background:var(--night);color:var(--white)}
+.compare .sec-head h2{color:var(--white)}
+.compare .sec-head p{color:#C9CEE0}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th,td{text-align:left;padding:16px 14px;border-bottom:1px solid rgba(255,255,255,.15);vertical-align:top}
+th{font-family:"Young Serif",serif;font-weight:400;font-size:19px}
+td:first-child{color:#C9CEE0;width:28%}
+tr td:nth-child(3){color:#F3DFA9}
+.tablewrap{overflow-x:auto}
+.india{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{background:var(--white);border-radius:20px;padding:30px}
+.card svg{width:54px;height:54px;margin-bottom:16px}
+.card h3{font-size:21px;color:var(--night);margin-bottom:8px}
+.card p{color:var(--soft);font-size:16px}
+@media(max-width:860px){.india{grid-template-columns:1fr}}
+.shades{background:var(--white)}
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sw{border-radius:20px;overflow:hidden;border:1px solid #e3e6ee}
+.sw .top{height:150px;position:relative}
+.sw .top svg{position:absolute;inset:0;width:100%;height:100%}
+.sw .lab{padding:18px 20px}
+.sw h3{font-size:20px;color:var(--night)}
+.sw p{font-size:15px;color:var(--soft)}
+@media(max-width:760px){.swatches{grid-template-columns:1fr}}
+.launch{text-align:center;background:linear-gradient(180deg,var(--mist),#E3E7F0)}
+.launch h2{font-size:clamp(36px,5vw,58px);color:var(--night);margin-bottom:16px}
+.launch p{color:var(--soft);max-width:36em;margin:0 auto}
+.timeline{display:flex;justify-content:center;gap:0;margin:44px auto 0;max-width:760px}
+.tl{flex:1;position:relative;padding-top:28px;font-size:14px;color:var(--soft)}
+.tl::before{content:"";position:absolute;top:8px;left:0;right:0;height:2px;background:#c8cede}
+.tl::after{content:"";position:absolute;top:2px;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:#c8cede}
+.tl.done::after{background:var(--night)}
+.tl.now::after{background:var(--kesar);box-shadow:0 0 0 6px rgba(201,154,46,.25)}
+.tl b{display:block;color:var(--night);font-weight:600}
+@media(max-width:600px){.timeline{flex-direction:column;gap:18px;text-align:left}.tl{padding:0 0 0 28px}.tl::before{display:none}.tl::after{left:6px;top:4px}}
+footer{background:var(--night);color:#AEB4CB;font-size:14px;padding:36px 0}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gloss" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".18" stop-color="#fff" stop-opacity=".55"/><stop offset=".32" stop-color="#fff" stop-opacity=".0"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient></defs></svg>
+<nav><div class="wrap">
+<a class="logo" href="#top" aria-label="Irova home"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#1E2547"/><path d="M9 22c3-9 6-12 14-14M11 24c3-7 7-10 12-11" stroke="#C99A2E" stroke-width="2" fill="none" stroke-linecap="round"/></svg>Irova</a>
+<div class="navlinks"><a href="#products">Products</a><a href="#how">How it works</a><a href="#formula">Formula</a><a href="#shades">Shades</a></div>
+<span class="pill">Launching soon</span>
+</div></nav>
+<header class="hero" id="top"><div class="wrap">
+<div>
+<h1>Grey, softly coloured.</h1>
+<p>A gentle, PPD-free colour treatment that you use like a conditioner. Made for naturally dark Indian hair and our hot, humid days.</p>
+<div class="soon"><i></i> Launching soon in India</div>
+</div>
+<svg class="strands" viewBox="0 0 520 540" role="img" aria-label="Illustration of hair strands changing from grey to dark brown and black">
+<defs><linearGradient id="strand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9CDD6"/><stop offset=".45" stop-color="#8E8A93"/><stop offset=".75" stop-color="#4A3A33"/><stop offset="1" stop-color="#1B1715"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3B4C8C" stop-opacity=".7"/><stop offset="1" stop-color="#1E2547" stop-opacity="0"/></radialGradient></defs>
+<circle cx="270" cy="270" r="250" fill="url(#glow)"/>
+<g stroke="url(#strand)">
+<path d="M120 20 C 170 140, 90 260, 160 380 S 150 500, 190 530"/>
+<path d="M150 15 C 200 140, 120 260, 190 380 S 180 500, 220 530"/>
+<path d="M182 12 C 232 140, 152 262, 222 382 S 212 500, 252 532"/>
+<path d="M214 10 C 264 140, 184 262, 254 382 S 244 500, 284 532"/>
+<path d="M246 10 C 296 140, 216 262, 286 382 S 276 500, 316 532"/>
+<path d="M278 12 C 328 140, 248 262, 318 382 S 308 500, 348 532"/>
+<path d="M310 15 C 360 140, 280 262, 350 382 S 340 500, 380 530"/>
+<path d="M342 20 C 392 140, 312 262, 382 382 S 372 500, 412 528"/>
+<path d="M374 28 C 424 140, 344 262, 414 380 S 404 498, 444 524"/>
+</g>
+<g fill="#C99A2E"><circle cx="430" cy="120" r="5"/><circle cx="90" cy="200" r="3.5"/><circle cx="460" cy="330" r="3"/></g>
+</svg>
+</div></header>
+<main>
+<section id="products"><div class="wrap">
+<div class="sec-head"><h2>The colour treatment</h2><p>One 200 g tube, three shades. Apply after shampoo, wait about ten minutes, rinse. The colour builds a little more with every use.</p></div>
+<div class="products">
+<div class="prod"><div class="prod-stage"><svg viewBox="0 0 160 320" role="img" aria-label="Irova colour treatment tube, Natural Black"><rect x="58" y="6" width="44" height="40" rx="6" fill="#1B1715"/><rect x="52" y="40" width="56" height="14" rx="3" fill="#2a2522"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="#F4F5F8"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="url(#gloss)"/><rect x="22" y="282" width="116" height="10" fill="#1B1715"/><text x="80" y="120" text-anchor="middle" font-family="Young Serif, serif" font-size="24" letter-spacing="1" fill="#1E2547">Irova</text><rect x="48" y="140" width="64" height="2" fill="#C99A2E"/><text x="80" y="164" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#5B6072">colour treatment</text><circle cx="80" cy="200" r="16" fill="#1B1715"/><text x="80" y="236" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9.5" fill="#20232E">Natural Black</text><text x="80" y="268" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" fill="#5B6072">200 g</text></svg></div><h3>Natural Black</h3><p>For jet-black hair</p></div>
+<div class="prod"><div class="prod-stage"><svg viewBox="0 0 160 320" role="img" aria-label="Irova colour treatment tube, Dark Brown"><rect x="58" y="6" width="44" height="40" rx="6" fill="#3B2A22"/><rect x="52" y="40" width="56" height="14" rx="3" fill="#4a362c"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="#F4F5F8"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="url(#gloss)"/><rect x="22" y="282" width="116" height="10" fill="#3B2A22"/><text x="80" y="120" text-anchor="middle" font-family="Young Serif, serif" font-size="24" letter-spacing="1" fill="#1E2547">Irova</text><rect x="48" y="140" width="64" height="2" fill="#C99A2E"/><text x="80" y="164" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#5B6072">colour treatment</text><circle cx="80" cy="200" r="16" fill="#3B2A22"/><text x="80" y="236" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9.5" fill="#20232E">Dark Brown</text><text x="80" y="268" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" fill="#5B6072">200 g</text></svg></div><h3>Dark Brown</h3><p>For soft black and deep brown hair</p></div>
+<div class="prod"><div class="prod-stage"><svg viewBox="0 0 160 320" role="img" aria-label="Irova colour treatment tube, Brown"><rect x="58" y="6" width="44" height="40" rx="6" fill="#5C4033"/><rect x="52" y="40" width="56" height="14" rx="3" fill="#6b4c3d"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="#F4F5F8"/><path d="M30 54 H130 L138 290 Q80 312 22 290 Z" fill="url(#gloss)"/><rect x="22" y="282" width="116" height="10" fill="#5C4033"/><text x="80" y="120" text-anchor="middle" font-family="Young Serif, serif" font-size="24" letter-spacing="1" fill="#1E2547">Irova</text><rect x="48" y="140" width="64" height="2" fill="#C99A2E"/><text x="80" y="164" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#5B6072">colour treatment</text><circle cx="80" cy="200" r="16" fill="#5C4033"/><text x="80" y="236" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9.5" fill="#20232E">Brown</text><text x="80" y="268" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" fill="#5B6072">200 g</text></svg></div><h3>Brown</h3><p>For brown and lighter hair</p></div>
+</div></div></section>
+<section class="how" id="how"><div class="wrap">
+<div class="sec-head"><h2>As easy as conditioning</h2><p>No mixing bowl, no developer, no hour-long wait.</p></div>
+<div class="steps">
+<div class="step"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="#EEF0F4"/><path d="M22 40c0-8 6-14 14-14s14 6 14 14" stroke="#1E2547" stroke-width="3" fill="none"/><circle cx="28" cy="22" r="4" fill="#3B4C8C"/><circle cx="40" cy="17" r="3" fill="#3B4C8C"/><circle cx="47" cy="25" r="2.5" fill="#3B4C8C"/><path d="M26 48v6M36 48v8M46 48v6" stroke="#3B4C8C" stroke-width="3" stroke-linecap="round"/></svg><h3>Shampoo</h3><p>Wash as usual and squeeze out excess water. It also works on dry hair for stubborn greys.</p></div>
+<div class="step"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="#EEF0F4"/><circle cx="36" cy="38" r="17" stroke="#1E2547" stroke-width="3" fill="none"/><path d="M36 38V28M36 38l7 5" stroke="#C99A2E" stroke-width="3" stroke-linecap="round"/><path d="M30 16h12" stroke="#1E2547" stroke-width="3" stroke-linecap="round"/></svg><h3>Apply and wait</h3><p>Work it through the grey areas with gloves and leave it on for about 10 minutes.</p></div>
+<div class="step"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="#EEF0F4"/><path d="M36 16c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z" fill="#3B4C8C"/><path d="M30 42a6 6 0 0 0 6 6" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg><h3>Rinse</h3><p>Rinse well with lukewarm water. Repeat a few times to build colour, then once or twice a week.</p></div>
+</div>
+<p class="note">Please do a patch test 48 hours before first use, even with gentle formulas.</p>
+</div></section>
+<section id="formula"><div class="wrap free">
+<div class="sec-head" style="margin-bottom:0"><h2>What we are leaving out</h2><p>Most box dyes rely on PPD, ammonia and peroxide to force colour inside the hair. Our treatment is being developed to colour the surface of grey hair instead, gently and gradually.</p></div>
+<div class="badges">
+<div class="badge"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1E2547"/><path d="M12 28L28 12" stroke="#C99A2E" stroke-width="3"/><text x="20" y="24" text-anchor="middle" font-size="10" fill="#fff" font-family="Work Sans">PPD</text></svg><div><b>No PPD</b><span>The most common dye allergen</span></div></div>
+<div class="badge"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1E2547"/><path d="M12 28L28 12" stroke="#C99A2E" stroke-width="3"/><text x="20" y="24" text-anchor="middle" font-size="10" fill="#fff" font-family="Work Sans">NH₃</text></svg><div><b>No ammonia</b><span>No sharp smell</span></div></div>
+<div class="badge"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1E2547"/><path d="M12 28L28 12" stroke="#C99A2E" stroke-width="3"/><text x="20" y="24" text-anchor="middle" font-size="9" fill="#fff" font-family="Work Sans">H₂O₂</text></svg><div><b>No peroxide</b><span>No mixing, less damage</span></div></div>
+<div class="badge"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1E2547"/><path d="M20 30c-6-4-9-9-9-14 6 0 9 4 9 9 0-5 3-9 9-9 0 5-3 10-9 14z" fill="#C99A2E"/></svg><div><b>Plant-derived care</b><span>Conditions as it colours</span></div></div>
+</div>
+</div></section>
+<section class="compare"><div class="wrap">
+<div class="sec-head"><h2>Colour treatment vs box dye</h2><p>Two different ways to cover grey. Here is how they compare.</p></div>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Conventional box dye</th><th>Irova treatment</th></tr></thead>
+<tbody>
+<tr><td>How it works</td><td>Peroxide opens the hair and dye forms inside it</td><td>Colour coats the surface of grey hair</td></tr>
+<tr><td>Mixing</td><td>Colour and developer, bowl and brush</td><td>None, straight from the tube</td></tr>
+<tr><td>Time on hair</td><td>25 to 45 minutes</td><td>About 10 minutes</td></tr>
+<tr><td>Results</td><td>Full coverage in one go</td><td>Builds gradually over a few uses</td></tr>
+<tr><td>Upkeep</td><td>Roots every 4 to 6 weeks</td><td>Once or twice a week, like conditioner</td></tr>
+<tr><td>Key allergens</td><td>Usually PPD or PTD</td><td>Formulated without PPD</td></tr>
+</tbody></table></div>
+</div></section>
+<section><div class="wrap">
+<div class="sec-head"><h2>Made for India</h2><p>Inspired by the gentle colour treatments loved in Japan and Korea, reworked for our hair and weather.</p></div>
+<div class="india">
+<div class="card"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#EEF0F4"/><circle cx="27" cy="27" r="9" fill="#C99A2E"/><g stroke="#C99A2E" stroke-width="3" stroke-linecap="round"><path d="M27 8v5M27 41v5M8 27h5M41 27h5M14 14l3.5 3.5M36.5 36.5L40 40M14 40l3.5-3.5M36.5 17.5L40 14"/></g></svg><h3>Heat and humidity</h3><p>Being developed to resist sweat, so colour stays on your hair and off your pillow.</p></div>
+<div class="card"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#EEF0F4"/><path d="M18 10c6 10-4 18 2 34M27 9c6 10-4 18 2 35M36 10c6 10-4 18 2 34" stroke="#1E2547" stroke-width="3" fill="none" stroke-linecap="round"/></svg><h3>Dark hair first</h3><p>Shades chosen to blend greys into naturally black and dark brown Indian hair.</p></div>
+<div class="card"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#EEF0F4"/><path d="M15 31l8 8 16-20" stroke="#3B4C8C" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Gentle by design</h3><p>For anyone who finds regular dyes harsh, smelly or irritating on the scalp.</p></div>
+</div>
+</div></section>
+<section class="shades" id="shades"><div class="wrap">
+<div class="sec-head"><h2>Three shades to start</h2><p>Pick the one closest to your natural colour.</p></div>
+<div class="swatches">
+<div class="sw"><div class="top" style="background:#1B1715"><svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><g stroke="#3a3330" stroke-width="2" fill="none"><path d="M0 40 C80 20 160 70 300 30"/><path d="M0 70 C80 50 160 100 300 60"/><path d="M0 100 C80 80 160 130 300 90"/></g></svg></div><div class="lab"><h3>Natural Black</h3><p>Deep, soft black</p></div></div>
+<div class="sw"><div class="top" style="background:#3B2A22"><svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><g stroke="#5a4438" stroke-width="2" fill="none"><path d="M0 40 C80 20 160 70 300 30"/><path d="M0 70 C80 50 160 100 300 60"/><path d="M0 100 C80 80 160 130 300 90"/></g></svg></div><div class="lab"><h3>Dark Brown</h3><p>Warm, natural depth</p></div></div>
+<div class="sw"><div class="top" style="background:#5C4033"><svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><g stroke="#7d5b4a" stroke-width="2" fill="none"><path d="M0 40 C80 20 160 70 300 30"/><path d="M0 70 C80 50 160 100 300 60"/><path d="M0 100 C80 80 160 130 300 90"/></g></svg></div><div class="lab"><h3>Brown</h3><p>Soft, lighter brown</p></div></div>
+</div>
+</div></section>
+<section class="launch"><div class="wrap">
+<h2>Launching soon</h2>
+<p>We are finalising our formula and manufacturing partner. The first batch is planned for online launch in India.</p>
+<div class="timeline" aria-label="Launch progress">
+<div class="tl done"><b>Research</b>Formats and ingredients</div>
+<div class="tl now"><b>Manufacturing</b>Selecting a partner</div>
+<div class="tl"><b>Testing</b>Samples and patch tests</div>
+<div class="tl"><b>Launch</b>Online in India</div>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Irova · Launching soon in India</span><span>© 2026 Irova</span></div></footer>
+</body>
+</html>
