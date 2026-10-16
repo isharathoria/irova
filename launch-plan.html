@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irova Launch Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: indigo header band, sticky progress rail on wide screens, phase cards with tick lists */
+:root{
+  --bg:#EEF0F4; --surface:#FFFFFF; --ink:#20232E; --soft:#5B6072; --line:#DDE1EA;
+  --night:#1E2547; --accent:#C99A2E; --accent-soft:#F6EBCF; --done:#2F7D5B; --warn:#B4542F;
+  --display:"Young Serif",Georgia,serif; --body:"Work Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12152A; --surface:#1B2038; --ink:#E8EAF2; --soft:#A3A9BF; --line:#2D3352;
+  --night:#0C0F22; --accent:#E0B654; --accent-soft:#3A3220; --done:#5FBF92; --warn:#E58A63; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12152A; --surface:#1B2038; --ink:#E8EAF2; --soft:#A3A9BF; --line:#2D3352;
+  --night:#0C0F22; --accent:#E0B654; --accent-soft:#3A3220; --done:#5FBF92; --warn:#E58A63; color-scheme:dark}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.2;text-wrap:balance}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+
+header{background:var(--night);color:#fff;padding-block:44px 36px}
+header .eyebrow{font-size:14px;color:#C9CEE0}
+header h1{font-size:clamp(34px,5vw,52px);margin:6px 0 10px}
+header p{color:#C9CEE0;max-width:46em}
+.overall{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar{flex:1;min-width:200px;height:10px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.overall span{font-variant-numeric:tabular-nums;font-size:15px;color:#E3E6F0}
+
+.layout{display:grid;grid-template-columns:240px 1fr;gap:36px;padding-block:36px 64px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.rail{display:none}}
+.rail{position:sticky;top:20px;align-self:start;display:grid;gap:4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;padding:8px 12px;border-radius:8px;color:var(--soft);font-size:15px}
+.rail a:hover{background:var(--surface);color:var(--ink)}
+.rail a b{font-weight:500;font-variant-numeric:tabular-nums;font-size:13px}
+.rail a.full b{color:var(--done)}
+
+main{display:grid;gap:28px;min-width:0}
+section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;min-width:0}
+.sec-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+section h2{font-size:26px;color:var(--ink)}
+.when{font-size:14px;color:var(--soft)}
+.sec-intro{color:var(--soft);margin-bottom:16px;max-width:62ch}
+.mini{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:14px}
+.mini i{display:block;height:100%;width:0;background:var(--done);transition:width .3s}
+
+ul.tasks{list-style:none;display:grid;gap:2px}
+.tasks label{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:10px 8px;border-radius:8px;cursor:pointer}
+.tasks label:hover{background:var(--bg)}
+.tasks input{appearance:none;width:20px;height:20px;margin-top:2px;border:2px solid var(--soft);border-radius:5px;display:grid;place-content:center;cursor:pointer;background:var(--surface)}
+.tasks input:checked{background:var(--done);border-color:var(--done)}
+.tasks input:checked::after{content:"";width:10px;height:6px;border:solid #fff;border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
+.tasks .t{display:block}
+.tasks .n{display:block;font-size:14px;color:var(--soft);margin-top:2px}
+.tasks input:checked + span .t{text-decoration:line-through;color:var(--soft)}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;margin-left:6px;vertical-align:1px}
+.tag.key{background:var(--accent-soft);color:var(--ink)}
+.tag.risk{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(9,minmax(70px,1fr));gap:0;margin-top:8px;min-width:640px}
+.tl-wrap{overflow-x:auto}
+.tl .m{font-size:13px;color:var(--soft);padding:6px 0;border-bottom:1px solid var(--line);text-align:center;font-variant-numeric:tabular-nums}
+.tl .row{grid-column:1 / -1;display:grid;grid-template-columns:repeat(9,minmax(70px,1fr));align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.tl .seg{height:22px;border-radius:6px;font-size:12px;color:#fff;display:flex;align-items:center;padding:0 8px;white-space:nowrap;overflow:hidden}
+.seg.a{background:#3B4C8C}.seg.b{background:#5A6FB8}.seg.c{background:var(--warn)}.seg.d{background:#8A6A2A}.seg.e{background:var(--done)}
+.tl-note{font-size:14px;color:var(--soft);margin-top:12px}
+
+/* contacts + decisions */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h3{font-size:20px;margin-bottom:6px}
+.card p,.card li{font-size:15px;color:var(--soft)}
+.card ul{padding-left:18px;display:grid;gap:4px;margin-top:6px}
+.card .v{color:var(--ink);font-variant-numeric:tabular-nums}
+.decide{border-left:4px solid var(--accent)}
+.decide.risk{border-left-color:var(--warn)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.fact{background:var(--bg);border-radius:10px;padding:14px 16px}
+.fact b{display:block;font-size:13px;color:var(--soft);font-weight:500}
+.fact span{font-family:var(--display);font-size:20px}
+
+.reset{margin-top:8px;background:none;border:1px solid var(--line);color:var(--soft);border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.reset:hover{color:var(--ink)}
+footer{color:var(--soft);font-size:13px;padding-block:0 40px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Gentle grey-hair colour treatment for India · Updated 14 Oct 2026</div>
+    <h1>Irova launch plan</h1>
+    <p>Everything left to do between today and a mid-2027 launch, grouped by phase. Tick tasks as you finish them; your progress is saved in this browser.</p>
+    <div class="overall"><div class="bar"><i id="allBar"></i></div><span id="allTxt">0 of 0 done</span></div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="rail" aria-label="Sections" id="rail"></nav>
+
+  <main>
+
+    <section id="snapshot" data-static>
+      <div class="sec-top"><h2>Where things stand</h2></div>
+      <div class="facts">
+        <div class="fact"><b>Brand</b><span>Irova (name at risk)</span></div>
+        <div class="fact"><b>Product</b><span>PPD-free colour treatment, 3 shades, 200 g</span></div>
+        <div class="fact"><b>Manufacturers</b><span>Pyuru, Tenshindo</span></div>
+        <div class="fact"><b>First batch</b><span>3,000–5,000 units</span></div>
+        <div class="fact"><b>Target launch</b><span>Mid-2027</span></div>
+        <div class="fact"><b>Website</b><span><a href="https://isharathoria.github.io/irova/" target="_blank" rel="noopener">isharathoria.github.io/irova</a></span></div>
+      </div>
+    </section>
+
+    <section id="outreach" data-phase>
+      <div class="sec-top"><h2>1. Manufacturer outreach</h2><span class="when">This week</span></div>
+      <p class="sec-intro">Get both inquiries in, then chase replies.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="o1"><span><span class="t">Submit Pyuru OEM inquiry form <span class="tag key">Key</span></span><span class="n">English form at pyuru.co.jp/en/contact-oem. Lot "Others" → 3,000; mention mid-2027.</span></span></label></li>
+        <li><label><input type="checkbox" id="o2"><span><span class="t">Submit Tenshindo contact form</span><span class="n">Japanese inquiry text, English version underneath. Lot 3000～4999, product その他, sales 通信販売.</span></span></label></li>
+        <li><label><input type="checkbox" id="o3"><span><span class="t">Check inbox and spam for confirmation emails</span><span class="n">No Pyuru confirmation within a day → resend via their backup Microsoft form.</span></span></label></li>
+        <li><label><input type="checkbox" id="o4"><span><span class="t">Follow up if no reply after 10 working days</span><span class="n">Short, polite nudge by phone or a second form entry.</span></span></label></li>
+        <li><label><input type="checkbox" id="o5"><span><span class="t">Compare replies side by side</span><span class="n">Minimum order, unit cost, development fee, timeline, India documents, samples.</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="brand" data-phase>
+      <div class="sec-top"><h2>2. Name and trademark</h2><span class="when">Oct–Nov 2026</span></div>
+      <p class="sec-intro">Settle the name before anything is printed. Reprinting tubes is expensive.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="b1"><span><span class="t">Run Phonetic search for IROVA, class 3</span><span class="n">IP India public search. Wordmark "Match with" was clean; "Contains" showed close marks.</span></span></label></li>
+        <li><label><input type="checkbox" id="b2"><span><span class="t">Repeat Wordmark and Phonetic searches in class 35</span><span class="n">Online retail.</span></span></label></li>
+        <li><label><input type="checkbox" id="b3"><span><span class="t">Decide on the name <span class="tag risk">Risk</span></span><span class="n">NIROVAA (cosmetics, hair lotions) and MIROVA (cosmetics) are pending in class 3 and filed earlier.</span></span></label></li>
+        <li><label><input type="checkbox" id="b4"><span><span class="t">Get a trademark agent's opinion</span><span class="n">A short consultation before filing.</span></span></label></li>
+        <li><label><input type="checkbox" id="b5"><span><span class="t">File trademark application, class 3 (and 35)</span><span class="n">India is first-to-file; also needed for Amazon Brand Registry.</span></span></label></li>
+        <li><label><input type="checkbox" id="b6"><span><span class="t">Secure domain and social handles</span><span class="n">e.g. irova.in, Instagram.</span></span></label></li>
+        <li><label><input type="checkbox" id="b7"><span><span class="t">Design logo, then trademark it</span><span class="n">This is when the Vienna code search applies.</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="product" data-phase>
+      <div class="sec-top"><h2>3. Product development</h2><span class="when">Nov 2026 – Jan 2027</span></div>
+      <p class="sec-intro">Choose the manufacturer, then get the formula right on real Indian grey hair.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="p1"><span><span class="t">Choose manufacturer and sign an NDA</span></span></label></li>
+        <li><label><input type="checkbox" id="p2"><span><span class="t">Order paid lab samples in all three shades <span class="tag key">Key</span></span></span></label></li>
+        <li><label><input type="checkbox" id="p3"><span><span class="t">Test on Indian grey hair</span><span class="n">Colour depth after 1, 3 and 5 uses; staining on skin, nails and towels; sweat resistance; smell.</span></span></label></li>
+        <li><label><input type="checkbox" id="p4"><span><span class="t">Run patch tests</span></span></label></li>
+        <li><label><input type="checkbox" id="p5"><span><span class="t">Approve the final formula and shades</span></span></label></li>
+        <li><label><input type="checkbox" id="p6"><span><span class="t">Collect stability and safety reports</span><span class="n">Needed for India import registration.</span></span></label></li>
+        <li><label><input type="checkbox" id="p7"><span><span class="t">Confirm claims match the final formula</span><span class="n">PPD-free, ammonia-free, peroxide-free; follow ASCI ad rules.</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="packaging" data-phase>
+      <div class="sec-top"><h2>4. Packaging and label</h2><span class="when">Dec 2026 – Feb 2027</span></div>
+      <p class="sec-intro">Use the factory's stock tube with your printing (turnkey) for the first batch.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="k1"><span><span class="t">Pick a stock tube or pump bottle</span><span class="n">Confirm packaging minimum matches the product minimum.</span></span></label></li>
+        <li><label><input type="checkbox" id="k2"><span><span class="t">Decide: carton or tube only</span></span></label></li>
+        <li><label><input type="checkbox" id="k3"><span><span class="t">Get the dieline (printing template)</span></span></label></li>
+        <li><label><input type="checkbox" id="k4"><span><span class="t">Design packaging artwork</span><span class="n">Colour-coded by shade; "Made in Japan" on the front.</span></span></label></li>
+        <li><label><input type="checkbox" id="k5"><span><span class="t">Write the India label text</span><span class="n">Name, ingredients, net quantity, batch, manufacturing and expiry dates, manufacturer, importer, MRP, CDSCO registration number, patch-test warning.</span></span></label></li>
+        <li><label><input type="checkbox" id="k6"><span><span class="t">Decide: print India details at factory or add a sticker in India</span></span></label></li>
+        <li><label><input type="checkbox" id="k7"><span><span class="t">Approve printed proof</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="import" data-phase>
+      <div class="sec-top"><h2>5. Company, import and registration</h2><span class="when">Start Dec 2026</span></div>
+      <p class="sec-intro">CDSCO registration can take up to six months, so this is the longest step. File as soon as the manufacturer's documents are ready.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="i1"><span><span class="t">Set up the business entity</span><span class="n">Proprietorship, LLP or private limited; ask a CA which suits importing.</span></span></label></li>
+        <li><label><input type="checkbox" id="i2"><span><span class="t">Get GST registration</span></span></label></li>
+        <li><label><input type="checkbox" id="i3"><span><span class="t">Get an Importer Exporter Code (IEC)</span><span class="n">From DGFT; needed to import.</span></span></label></li>
+        <li><label><input type="checkbox" id="i4"><span><span class="t">Hire a CDSCO regulatory consultant</span></span></label></li>
+        <li><label><input type="checkbox" id="i5"><span><span class="t">Collect documents from the manufacturer</span><span class="n">Free-sale certificate, full ingredient list, safety data, certificate of analysis, authorisation letter.</span></span></label></li>
+        <li><label><input type="checkbox" id="i6"><span><span class="t">File CDSCO import registration (COS-1) <span class="tag key">Key</span></span><span class="n">Decision within up to 6 months; certificate is COS-2.</span></span></label></li>
+        <li><label><input type="checkbox" id="i7"><span><span class="t">Check Legal Metrology registration as an importer of packaged goods</span></span></label></li>
+        <li><label><input type="checkbox" id="i8"><span><span class="t">Appoint a customs broker and freight forwarder</span></span></label></li>
+        <li><label><input type="checkbox" id="i9"><span><span class="t">Confirm duty under the India–Japan CEPA</span><span class="n">Ask the factory for a certificate of origin.</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="production" data-phase>
+      <div class="sec-top"><h2>6. Production and shipping</h2><span class="when">Feb – May 2027</span></div>
+      <p class="sec-intro">Pyuru quotes about four months from order to delivery.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="m1"><span><span class="t">Sign the order and pay the deposit</span><span class="n">Often 30–50% upfront.</span></span></label></li>
+        <li><label><input type="checkbox" id="m2"><span><span class="t">Approve the pre-shipment sample</span></span></label></li>
+        <li><label><input type="checkbox" id="m3"><span><span class="t">Receive QC documents</span><span class="n">Certificate of analysis per batch, packing list, invoice.</span></span></label></li>
+        <li><label><input type="checkbox" id="m4"><span><span class="t">Ship to India and clear customs</span></span></label></li>
+        <li><label><input type="checkbox" id="m5"><span><span class="t">Apply India stickers, if not printed at the factory</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="launch" data-phase>
+      <div class="sec-top"><h2>7. Launch</h2><span class="when">Jun – Jul 2027</span></div>
+      <p class="sec-intro">Set up selling channels while the stock is on its way.</p>
+      <div class="mini"><i></i></div>
+      <ul class="tasks">
+        <li><label><input type="checkbox" id="l1"><span><span class="t">Set MRP and pricing</span><span class="n">Landed cost including duty and 18% GST, plus marketplace fees.</span></span></label></li>
+        <li><label><input type="checkbox" id="l2"><span><span class="t">Arrange warehousing and fulfilment</span></span></label></li>
+        <li><label><input type="checkbox" id="l3"><span><span class="t">Open marketplace accounts</span><span class="n">Amazon India, Nykaa, own website.</span></span></label></li>
+        <li><label><input type="checkbox" id="l4"><span><span class="t">Apply for Amazon Brand Registry</span><span class="n">Requires a trademark application.</span></span></label></li>
+        <li><label><input type="checkbox" id="l5"><span><span class="t">Update the website from "launching soon"</span><span class="n">Real product photos, how-to video, buy links.</span></span></label></li>
+        <li><label><input type="checkbox" id="l6"><span><span class="t">Seed early users and collect reviews</span></span></label></li>
+      </ul>
+    </section>
+
+    <section id="timeline" data-static>
+      <div class="sec-top"><h2>Timeline</h2><span class="when">Oct 2026 – Jun 2027</span></div>
+      <div class="tl-wrap">
+        <div class="tl">
+          <div class="m">Oct</div><div class="m">Nov</div><div class="m">Dec</div><div class="m">Jan</div><div class="m">Feb</div><div class="m">Mar</div><div class="m">Apr</div><div class="m">May</div><div class="m">Jun</div>
+          <div class="row"><div class="seg a" style="grid-column:1 / 3">Outreach and name</div></div>
+          <div class="row"><div class="seg b" style="grid-column:2 / 5">Samples and formula</div></div>
+          <div class="row"><div class="seg d" style="grid-column:3 / 6">Packaging and artwork</div></div>
+          <div class="row"><div class="seg c" style="grid-column:4 / 10">CDSCO registration (up to 6 months)</div></div>
+          <div class="row"><div class="seg d" style="grid-column:5 / 9">Production (about 4 months)</div></div>
+          <div class="row"><div class="seg e" style="grid-column:8 / 10">Ship, clear, launch</div></div>
+        </div>
+      </div>
+      <p class="tl-note">CDSCO registration is the step most likely to push the launch past June. If it slips, plan for July–August.</p>
+    </section>
+
+    <section id="contacts" data-static>
+      <div class="sec-top"><h2>Manufacturer contacts</h2></div>
+      <div class="grid2">
+        <div class="card">
+          <h3>Pyuru Co., Ltd.</h3>
+          <p>Itoshima, Fukuoka, Japan · ISO 22716 and ISO 9001</p>
+          <ul>
+            <li>Form: <a href="https://www.pyuru.co.jp/en/contact-oem" target="_blank" rel="noopener">pyuru.co.jp/en/contact-oem</a></li>
+            <li>Phone: <span class="v">+81 92-321-3700</span></li>
+            <li>Hours: 5:30 am – 2:30 pm IST, Mon–Fri</li>
+            <li>Minimum order about <span class="v">3,000</span>; about 4 months to deliver</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Tenshindo Co., Ltd.</h3>
+          <p>Tokyo head office; factory in Hachimantai, Iwate</p>
+          <ul>
+            <li>Form: <a href="https://www.tenshindo.ne.jp/contact/" target="_blank" rel="noopener">tenshindo.ne.jp/contact</a> (Japanese only)</li>
+            <li>Phone: <span class="v">050-6861-1100</span></li>
+            <li>Hours: 5:30 am – 1:30 pm IST, weekdays</li>
+            <li>Minimum order from <span class="v">1,000</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="decisions" data-static>
+      <div class="sec-top"><h2>Open decisions</h2></div>
+      <div class="grid2">
+        <div class="card decide risk"><h3>Keep the Irova name?</h3><p>Two similar pending marks in class 3. Decide before printing anything.</p></div>
+        <div class="card decide"><h3>Which manufacturer?</h3><p>Pyuru for proven gentle formulas; Tenshindo for the lowest minimum.</p></div>
+        <div class="card decide"><h3>Tube or pump, carton or not?</h3><p>Affects cost, look and the packaging minimum.</p></div>
+        <div class="card decide"><h3>Who is the importer?</h3><p>Your own company or a partner with an IEC and import registration.</p></div>
+      </div>
+      <button class="reset" type="button" id="reset">Clear all ticks</button>
+    </section>
+
+  </main>
+</div>
+
+<footer><div class="wrap">Regulatory steps are a planning guide, not legal advice. Confirm with a CDSCO consultant and a CA.</div></footer>
+
+<script>
+(function(){
+  const KEY='irova-plan-v1';
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+  const boxes=[...document.querySelectorAll('.tasks input')];
+  boxes.forEach(b=>{ if(saved[b.id]) b.checked=true; });
+
+  const phases=[...document.querySelectorAll('section[data-phase]')];
+  const rail=document.getElementById('rail');
+  const titles={snapshot:'Where things stand',timeline:'Timeline',contacts:'Contacts',decisions:'Open decisions'};
+  document.querySelectorAll('main > section').forEach(s=>{
+    const a=document.createElement('a'); a.href='#'+s.id;
+    const name=s.hasAttribute('data-phase') ? s.querySelector('h2').textContent : titles[s.id];
+    a.innerHTML='<span></span><b></b>'; a.firstChild.textContent=name; a.dataset.sec=s.id;
+    rail.appendChild(a);
+  });
+
+  function update(){
+    let done=0,total=0;
+    phases.forEach(s=>{
+      const bs=s.querySelectorAll('.tasks input'); const d=[...bs].filter(b=>b.checked).length;
+      done+=d; total+=bs.length;
+      s.querySelector('.mini i').style.width=(bs.length?d/bs.length*100:0)+'%';
+      const link=rail.querySelector('[data-sec="'+s.id+'"]');
+      link.querySelector('b').textContent=d+'/'+bs.length;
+      link.classList.toggle('full',d===bs.length);
+    });
+    document.getElementById('allBar').style.width=(total?done/total*100:0)+'%';
+    document.getElementById('allTxt').textContent=done+' of '+total+' done';
+  }
+  function save(){
+    const o={}; boxes.forEach(b=>{ if(b.checked) o[b.id]=1; });
+    try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}
+  }
+  boxes.forEach(b=>b.addEventListener('change',()=>{save();update();}));
+  document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);save();update();});
+  update();
+})();
+</script>
+</body>
+</html>
